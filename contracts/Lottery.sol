@@ -56,17 +56,6 @@ contract Lottery is VRFConsumerBase, Ownable {
     }
 
     function endLottery() public onlyOwner {
-        //this is a bad way to create random number - never use it in real project
-        // uint256(
-        //     keccak256(
-        //         abi.encodePacked(
-        //             nonce,
-        //             msg.sender,
-        //             block.difficulty,
-        //             block.timestamp
-        //         )
-        //     )
-        // ) % players.length;
         lottery_state = LOTTERY_STATE.CALCULATING_WINNER;
         bytes32 requestId = requestRandomness(keyhash, fee);
     }
